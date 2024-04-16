@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %} <!-- Début du block content -->
+
+<div class="card" style="width: 76rem;">
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID ticket</th>
+          <th scope="col">Titre du ticket</th>
+          <th scope="col">Client</th>
+          <th scope="col">Date créée</th>
+          <th scope="col">Statut</th> <!-- Ajouté pour afficher le statut -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for ticket in tickets %}
+          <tr>
+            <td>{{ ticket.id }}</td>
+            <td>{{ ticket.ticket_title }}</td>
+            <td>{{ ticket.customer }}</td>
+            <td>{{ ticket.created_on|date:"d/m/Y" }}</td> <!-- Utilisation de |date pour formater la date -->
+            <td>
+              {% if ticket.status == 'Pending' %}
+                <span class="badge bg-danger">Pending</span>
+              {% elif ticket.status == 'Active' %}
+                <span class="badge bg-warning">Active</span>
+              {% elif ticket.status == 'Resolved' %}
+                <span class="badge bg-success">Resolved</span>
+              {% endif %}
+            </td>
+            <td>
+              <!-- Placez ici les actions possibles pour chaque ticket -->
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock content %}

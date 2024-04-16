@@ -1,0 +1,31 @@
+{% extends 'accounts/base.html' %}
+
+{% block heading %}
+log in to Continue
+{% endblock heading %}
+
+{% block content %}
+
+<form classs="p-4 p-md-5 border rounded-3 bg-light" method="POST">
+    {% csrf_token %}
+    <div class="form-floating mb-3">
+        <input type="email" name="username" class="form-control" id="floatingInput">
+        <label for="floatingInput">email</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" name="password" class="form-control" id="floatingPassword">
+        <label for="floatingPassword">password</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+    <hr class="my-4">
+    <small class="text-muted">Don't have an account? <a href="{% url 'register-customer' %}">Sign up</a></small>
+</form>
+{% endblock content %}
+
+
+
+
+
+
+
+
